@@ -21,8 +21,6 @@ $ JUMP_ALLOW="192.168.1.0/24" JUMP_LISTEN="0.0.0.0:22" jump
 2020/08/06 16:49:51 Listening on [::]:22
 ```
 
-Note: you may have to generate a new SSH keypair by running `ssh-keygen`, jump expects a private `id_rsa` key in its work directory.
-
 jump will now allow any forward connection to the `192.168.1.0/24` network
 
 ## Using jump
