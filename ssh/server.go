@@ -124,13 +124,15 @@ func (s *Server) accept(c net.Conn) {
 
 		go ssh.DiscardRequests(requests)
 
-		// pass traffic in both directions - close channel when io.Copy returns
+		// pass traffic in both directions - close when any io.Copy returns
 		go func() {
 			io.Copy(forwardConnection, channel)
 			channel.Close()
+			forwardConnection.Close()
 		}()
 		go func() {
 			io.Copy(channel, forwardConnection)
+			forwardConnection.Close()
 			channel.Close()
 		}()
 	}
